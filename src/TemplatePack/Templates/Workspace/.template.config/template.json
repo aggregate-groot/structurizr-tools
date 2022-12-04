@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Aggregate Groot",
+    "classifications": [ "architecture" ],
+    "identity": "AggregateGroot.Templates.Structurizr.Workspace",
+    "name": "Structurizr Workspace",
+    "shortName": "structurizr-workspace",
+    "sourceName": "WorkspaceName",
+    "tags": {
+        "type": "project"
+    },
+    "symbols": {
+        "decisionOwnerName": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "decisionOwnerName",
+            "description": "The default owner for an architecture decision."
+          },
+          "decisionOwnerEmail": {
+            "type": "parameter",
+            "datatype": "text",
+            "replaces": "decisionOwnerEmail",
+            "description": "The email address for the default architecture decision owner."
+          },
+          "structurizrPort": {
+            "type": "parameter",
+            "datatype": "int",
+            "replaces": "struturizrPort",
+            "defaultValue": "8088",
+            "description": "The port to bind to the Structurizr container."
+          }
+     }
+  }

@@ -1,2 +1,3 @@
-# structurizr-tools
-Custom tooling to extend Structurizr.
+# Structurizr Tools
+
+Custom tooling to extend [Structurizr](https://structurizr.com/).
