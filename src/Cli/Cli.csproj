@@ -9,6 +9,8 @@
         <RootNamespace>AggregateGroot.Structurizr.Tools.Cli</RootNamespace>
         <Version>0.1.0</Version>
         <PackAsTool>true</PackAsTool>
+        <ToolCommandName>st</ToolCommandName>
+        <PackageId>$(RootNamespace)</PackageId>
         <PackageVersion>$(Version)</PackageVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>

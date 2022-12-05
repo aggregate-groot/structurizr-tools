@@ -29,7 +29,7 @@ namespace AggregateGroot.Structurizr.Tools.Cli
                 .ToString()!;
             
             console.WriteLine("-----------------------------------");
-            console.WriteLine("Welcome.");
+            console.WriteLine("Welcome to the Structurizr tools.");
             console.WriteLine("Use -h for more help.");
             console.WriteLine($"Version: {versionNumber}");
             console.WriteLine("-----------------------------------");
