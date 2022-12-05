@@ -1,6 +1,8 @@
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
 
+using AggregateGroot.Structurizr.Tools.Cli.Commands;
+
 namespace AggregateGroot.Structurizr.Tools.Cli
 {
     /// <summary>
@@ -18,6 +20,8 @@ namespace AggregateGroot.Structurizr.Tools.Cli
         {         
             ServiceProvider services = new ServiceCollection()
                 .AddSingleton(PhysicalConsole.Singleton)
+                .AddSingleton<IPrompt, ConsolePrompt>()
+                .AddSingleton<ICliProvider, WrappedCliProvider>()
                 .BuildServiceProvider();
 
             CommandLineApplication<RootCommand> application = new ();
