@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +10,7 @@ namespace AggregateGroot.Structurizr.Tools.Cli
     /// <summary>
     /// Represents the main command line application.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     internal static class Program
     {
         /// <summary>
