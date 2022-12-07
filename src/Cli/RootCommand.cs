@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-
+using AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace;
 using McMaster.Extensions.CommandLineUtils;
 
 namespace AggregateGroot.Structurizr.Tools.Cli
@@ -9,6 +9,7 @@ namespace AggregateGroot.Structurizr.Tools.Cli
     /// Represents the root command for the CLI.
     /// </summary>
     [ExcludeFromCodeCoverage]
+    [Subcommand(typeof(WorkspaceCliCommand))]
     public class RootCommand
     {
         /// <summary>

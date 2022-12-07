@@ -4,6 +4,7 @@ using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
 
 using AggregateGroot.Structurizr.Tools.Cli.Commands;
+using AggregateGroot.Structurizr.Tools.Cli.Commands.Templating;
 
 namespace AggregateGroot.Structurizr.Tools.Cli
 {
@@ -25,6 +26,7 @@ namespace AggregateGroot.Structurizr.Tools.Cli
                 .AddSingleton(PhysicalConsole.Singleton)
                 .AddSingleton<IPrompt, ConsolePrompt>()
                 .AddSingleton<ICliProvider, WrappedCliProvider>()
+                .AddSingleton<ITemplateEngine, DotNetTemplateEngine>()
                 .BuildServiceProvider();
 
             CommandLineApplication<RootCommand> application = new ();
