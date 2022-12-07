@@ -16,7 +16,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="3.0.0" />
+        <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.0.2" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Cli.Commands\Cli.Commands.csproj" />
     </ItemGroup>
 </Project>

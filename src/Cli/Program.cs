@@ -1,11 +1,17 @@
+using System.Diagnostics.CodeAnalysis;
+
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
+
+using AggregateGroot.Structurizr.Tools.Cli.Commands;
+using AggregateGroot.Structurizr.Tools.Cli.Commands.Templating;
 
 namespace AggregateGroot.Structurizr.Tools.Cli
 {
     /// <summary>
     /// Represents the main command line application.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     internal static class Program
     {
         /// <summary>
@@ -18,6 +24,9 @@ namespace AggregateGroot.Structurizr.Tools.Cli
         {         
             ServiceProvider services = new ServiceCollection()
                 .AddSingleton(PhysicalConsole.Singleton)
+                .AddSingleton<IPrompt, ConsolePrompt>()
+                .AddSingleton<ICliProvider, WrappedCliProvider>()
+                .AddSingleton<ITemplateEngine, DotNetTemplateEngine>()
                 .BuildServiceProvider();
 
             CommandLineApplication<RootCommand> application = new ();

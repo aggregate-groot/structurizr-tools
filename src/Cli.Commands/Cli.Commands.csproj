@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <AssemblyName>$(RootNamespace)</AssemblyName>
+        <RootNamespace>AggregateGroot.Structurizr.Tools.Cli.Commands</RootNamespace>
+        <Version>0.1.0</Version>
+        <PackageVersion>$(Version)</PackageVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CliWrap" Version="3.5.0" />
+        <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.0.2" />
+    </ItemGroup>
+</Project>
