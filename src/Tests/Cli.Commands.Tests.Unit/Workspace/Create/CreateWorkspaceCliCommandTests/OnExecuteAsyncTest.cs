@@ -11,7 +11,7 @@ namespace AggregateGroot.Structurizr.Cli.Commands.Tests.Unit.Workspace.Create.Cr
     /// <summary>
     /// Unit tests for the OnExecuteAsync method of the <see cref="CreateWorkspaceCliCommand" /> class.
     /// </summary>
-    public class OnExecuteAsyncTest
+    public class OnExecuteAsyncTest : CliCommandTest
     {
         /// <summary>
         /// Tests that the values captured from the prompts are used as the template
@@ -24,20 +24,13 @@ namespace AggregateGroot.Structurizr.Cli.Commands.Tests.Unit.Workspace.Create.Cr
             const string decisionOwnerEmail = "mballstein@balls.models";
             const string port = "7777";
             
-            Mock<IPrompt> promptMock = new();
-            promptMock
-                .Setup(prompt => prompt.GetRequiredString("Decision Owner Name:", string.Empty))
-                .Returns(decisionOwnerName);
-            promptMock
-                .Setup(prompt => prompt.GetRequiredString("Decision Owner Email:", string.Empty))
-                .Returns(decisionOwnerEmail);
-            promptMock
-                .Setup(prompt => prompt.GetRequiredString("Structurizr Port:", string.Empty))
-                .Returns(port);
-            
+            SetupPrompt("Decision Owner Name:", decisionOwnerName);
+            SetupPrompt("Decision Owner Email:", decisionOwnerEmail);
+            SetupPrompt("Structurizr Port:", port);
+
             Mock<ITemplateEngine> templateEngineMock = new();
 
-            CreateWorkspaceCliCommand command = new(promptMock.Object, templateEngineMock.Object);
+            CreateWorkspaceCliCommand command = new(PromptMock.Object, templateEngineMock.Object);
             
             await command.OnExecuteAsync(new CommandLineApplication());
             
