@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using McMaster.Extensions.CommandLineUtils;
@@ -51,14 +52,20 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams
         /// <inheritdoc />
         public override async Task<int> OnExecuteAsync(CommandLineApplication application)
         {
-            if (!string.IsNullOrEmpty(OutputDirectory))
+            if (string.IsNullOrEmpty(OutputDirectory))
             {
-                return 1;
+                await _console.Error.WriteLineAsync("Please provide the output directory (-o).");
+                return 2;
             }
 
-            await _console.Error.WriteLineAsync("Please provide the output directory (-o).");
-            return 2;
+            IEnumerable<Diagram> diagrams = await _diagramExporter.ExportAllAsync(Port);
 
+            foreach (Diagram diagram in diagrams)
+            {
+                await _diagramTarget.WriteAsync(diagram, OutputDirectory);
+            }
+            
+            return 1;
         }
         
         private readonly IConsole _console;

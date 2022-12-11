@@ -29,7 +29,8 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands
                 .AddSingleton<IPrompt, ConsolePrompt>()
                 .AddSingleton<ICliProvider, WrappedCliProvider>()
                 .AddSingleton<ITemplateEngine, DotNetTemplateEngine>()
-                .AddSingleton<IDiagramExporter, PuppeteerDiagramExporter>();
+                .AddSingleton<IDiagramExporter, PuppeteerDiagramExporter>()
+                .AddSingleton<IDiagramTarget, FileSystemDiagramTarget>();
             
             return services;
         }

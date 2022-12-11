@@ -78,6 +78,17 @@ namespace AggregateGroot.Structurizr.Cli.Commands.Tests.Unit.CliCommandExtension
             Assert.IsType<PuppeteerDiagramExporter>(
                 _serviceProvider.GetRequiredService<IDiagramExporter>());
         }
+        
+        /// <summary>
+        /// Tests that the <see cref="FileSystemDiagramTarget"/> type is registered with the
+        /// service collection
+        /// </summary>
+        [Fact]
+        public void Should_Register_FileSystemDiagramTargetr()
+        {
+            Assert.IsType<FileSystemDiagramTarget>(
+                _serviceProvider.GetRequiredService<IDiagramTarget>());
+        }
 
         private readonly ServiceProvider _serviceProvider;
     }

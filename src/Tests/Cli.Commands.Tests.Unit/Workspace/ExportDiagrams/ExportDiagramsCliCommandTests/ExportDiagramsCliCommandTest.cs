@@ -1,5 +1,6 @@
-﻿using AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams;
-using Moq;
+﻿using Moq;
+
+using AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams;
 
 namespace AggregateGroot.Structurizr.Cli.Commands.Tests.Unit.Workspace.ExportDiagrams.ExportDiagramsCliCommandTests
 {
