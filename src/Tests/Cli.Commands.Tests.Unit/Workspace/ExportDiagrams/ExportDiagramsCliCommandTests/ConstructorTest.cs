@@ -18,7 +18,10 @@ namespace AggregateGroot.Structurizr.Cli.Commands.Tests.Unit.Workspace.ExportDia
         [Fact]
         public void New_Instance_Should_Have_Expected_State()
         {
-            ExportDiagramsCliCommand command = new ExportDiagramsCliCommand(ConsoleMock.Object);
+            ExportDiagramsCliCommand command = new (
+                ConsoleMock.Object,
+                DiagramExporterMock.Object,
+                DiagramTargetMock.Object);
             
             Assert.Equal(0, command.Port);
             Assert.Null(command.OutputDirectory);
@@ -33,9 +36,37 @@ namespace AggregateGroot.Structurizr.Cli.Commands.Tests.Unit.Workspace.ExportDia
         public void Null_Console_Should_Throw_Exception()
         {
             ArgumentNullException exception = Assert.Throws<ArgumentNullException>(
-                () => new ExportDiagramsCliCommand(null!));
+                () => new ExportDiagramsCliCommand(null!, DiagramExporterMock.Object, DiagramTargetMock.Object));
 
             Assert.Equal("console", exception.ParamName);
+        }
+
+        /// <summary>
+        /// Tests that passing a null diagramExporter argument will result
+        /// in an <see cref="ArgumentNullException" /> being thrown.
+        /// </summary>
+        [Fact]
+        [ExcludeFromCodeCoverage]
+        public void Null_DiagramExporter_Should_Throw_Exception()
+        {
+            ArgumentNullException exception = Assert.Throws<ArgumentNullException>(
+                () => new ExportDiagramsCliCommand(ConsoleMock.Object, null!, DiagramTargetMock.Object));
+
+            Assert.Equal("diagramExporter", exception.ParamName);
+        }
+
+        /// <summary>
+        /// Tests that passing a null diagramTarget argument will result
+        /// in an <see cref="ArgumentNullException" /> being thrown.
+        /// </summary>
+        [Fact]
+        [ExcludeFromCodeCoverage]
+        public void Null_DiagramTarget_Should_Throw_Exception()
+        {
+            ArgumentNullException exception = Assert.Throws<ArgumentNullException>(
+                () => new ExportDiagramsCliCommand(ConsoleMock.Object, DiagramExporterMock.Object, null!));
+
+            Assert.Equal("diagramTarget", exception.ParamName);
         }
     }
 }

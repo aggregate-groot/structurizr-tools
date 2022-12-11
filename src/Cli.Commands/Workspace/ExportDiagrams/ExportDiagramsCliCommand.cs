@@ -17,10 +17,23 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams
         /// <param name="console">
         /// Required type used to render console output.
         /// </param>
-        public ExportDiagramsCliCommand(IConsole console)
+        /// <param name="diagramExporter">
+        /// Required type used to export diagrams from the Structurizr workspace.
+        /// </param>
+        /// <param name="diagramTarget">
+        /// Required type used to save the diagram output.
+        /// </param>
+        public ExportDiagramsCliCommand(
+            IConsole console,
+            IDiagramExporter diagramExporter,
+            IDiagramTarget diagramTarget)
         {
             _console = console 
                 ?? throw new ArgumentNullException(nameof(console));
+            _diagramExporter = diagramExporter
+                ?? throw new ArgumentNullException(nameof(diagramExporter));
+            _diagramTarget = diagramTarget 
+                ?? throw new ArgumentNullException(nameof(diagramTarget));
         }
         
         /// <summary>
@@ -49,5 +62,7 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams
         }
         
         private readonly IConsole _console;
+        private readonly IDiagramExporter _diagramExporter;
+        private readonly IDiagramTarget _diagramTarget;
     }
 }
