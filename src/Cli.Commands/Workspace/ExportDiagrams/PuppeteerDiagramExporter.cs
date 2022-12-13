@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using PuppeteerSharp;
@@ -11,6 +11,7 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams
     /// Implementation of the <see cref="IDiagramExporter"/> interface that uses Puppeteer
     /// to automate diagram exporting to png format.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class PuppeteerDiagramExporter : IDiagramExporter
     {
         /// <inheritdoc />
@@ -23,15 +24,21 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams
                 new LaunchOptions { Headless = true });
             
             await using IPage? page = await browser.NewPageAsync();
-            await page.GoToAsync("http://localhost:9222/", WaitUntilNavigation.DOMContentLoaded);
+            await page.GoToAsync($"http://localhost:{port}/", WaitUntilNavigation.DOMContentLoaded);
 
+            List<Diagram> diagrams = new();
+            
             await page.ExposeFunctionAsync<string, string, bool>("exportDiagram", (diagramContent, fileName) =>
             {
                 Console.WriteLine($"File: {fileName}");
                 string trimmedContent = diagramContent.Replace(@"data:image/png;base64,", "");
                 try
                 {
-                    File.WriteAllBytes($"Z:\\Scratch\\{fileName}.png", Convert.FromBase64String(trimmedContent));
+                    diagrams.Add(new Diagram()
+                    {
+                        Content =  Convert.FromBase64String(trimmedContent), 
+                        Name = fileName
+                    });
                 }
                 catch (Exception e)
                 {
@@ -46,8 +53,7 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams
             await page.WaitForFunctionAsync("() => structurizr.scripting && structurizr.scripting.isDiagramRendered() === true");
 
             var views = await page.EvaluateFunctionAsync<dynamic>("() => structurizr.scripting.getViews()");
-            
-            //await page.ScreenshotAsync("Z:\\Scratch\\screenshot.png");
+
             foreach (dynamic view in views)
             {
                 Console.WriteLine($"View: {view.key}");
@@ -61,7 +67,7 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams
                     view.key + "-key");
             }
 
-            return new List<Diagram>();
+            return diagrams;
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.Create;
+
 using McMaster.Extensions.CommandLineUtils;
+
+using AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.Create;
+using AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams;
 
 namespace AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace
 {
@@ -9,7 +12,9 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace
     /// </summary>
     [ExcludeFromCodeCoverage]
     [Command("workspace", Description = "Root command for working with Structurizr workspaces.")]
-    [Subcommand(typeof(CreateWorkspaceCliCommand))]
+    [Subcommand(
+        typeof(CreateWorkspaceCliCommand),
+        typeof(ExportDiagramsCliCommand))]
     public class WorkspaceCliCommand : CliCommand
     {
         

@@ -1,0 +1,161 @@
+{
+  "id" : 1,
+  "name" : "Name",
+  "description" : "Description",
+  "lastModifiedDate" : "2022-12-13T06:06:09Z",
+  "properties" : {
+    "structurizr.dsl" : "d29ya3NwYWNlIHsKCiAgICAhYWRycyBkZWNpc2lvbnMKCiAgICBtb2RlbCB7CiAgICAgICAgdXNlciA9IHBlcnNvbiAiVXNlciIgIlVzZXMgdGhlIHN5c3RlbS4iCgogICAgICAgIGVudGVycHJpc2UgIkVudGVycHJpc2UiIHsKICAgICAgICAgICAgYmFja2VuZFN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJCYWNrZW5kIiB7CiAgICAgICAgICAgICAgICBhcGkgPSBjb250YWluZXIgIldlYiBBUEkiICJCYWNrZW5kIEFQSSIgIi5ORVQgNyBXZWIgQVBJIgogICAgICAgICAgICAgICAgZGF0YWJhc2UgPSBjb250YWluZXIgIkRhdGFiYXNlIiAiRW50aXR5IHBlcnNpc3RlbmNlIGRhdGFiYXNlLiIgIk1vbmdvIERCIiAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZnJvbnRlbmQgPSBzb2Z0d2FyZVN5c3RlbSAiRnJvbnRlbmQhIgogICAgICAgIH0KCiAgICAgICAgdXNlciAtPiBmcm9udGVuZCAiSW50ZXJhY3RzIHdpdGgiCiAgICAgICAgZnJvbnRlbmQgLT4gYXBpICJNYWtlcyByZXF1ZXN0cyB0byIKICAgICAgICBhcGkgLT4gZGF0YWJhc2UgIlJlYWRzIGZyb20gYW5kIHdyaXRlcyB0byIKICAgIH0KCiAgICB2aWV3cyB7CgogICAgICAgIHN5c3RlbUxhbmRzY2FwZSAiU3lzdGVtTGFuZHNjYXBlIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvTGF5b3V0CiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgYmFja2VuZFN5c3RlbSAiQ29udGFpbmVycyIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dAogICAgICAgIH0KCiAgICAgICAgc3R5bGVzIHsKICAgICAgICAgICAgZWxlbWVudCAiRXh0ZXJuYWwiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzk5OTk5OQogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlBsYXRmb3JtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMzM2NjZmYKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgQ3lsaW5kZXIKICAgICAgICAgICAgfQogICAgICAgIH0gCgogICAgICAgIHRoZW1lIGRlZmF1bHQKCiAgICB9Cn0K"
+  },
+  "configuration" : { },
+  "model" : {
+    "enterprise" : {
+      "name" : "Enterprise"
+    },
+    "people" : [ {
+      "id" : "1",
+      "tags" : "Element,Person",
+      "name" : "User",
+      "description" : "Uses the system.",
+      "relationships" : [ {
+        "id" : "6",
+        "tags" : "Relationship",
+        "sourceId" : "1",
+        "destinationId" : "5",
+        "description" : "Interacts with"
+      } ],
+      "location" : "External"
+    } ],
+    "softwareSystems" : [ {
+      "id" : "2",
+      "tags" : "Element,Software System",
+      "name" : "Backend",
+      "location" : "Internal",
+      "containers" : [ {
+        "id" : "4",
+        "tags" : "Element,Container,Database",
+        "name" : "Database",
+        "description" : "Entity persistence database.",
+        "technology" : "Mongo DB"
+      }, {
+        "id" : "3",
+        "tags" : "Element,Container",
+        "name" : "Web API",
+        "description" : "Backend API",
+        "relationships" : [ {
+          "id" : "9",
+          "tags" : "Relationship",
+          "sourceId" : "3",
+          "destinationId" : "4",
+          "description" : "Reads from and writes to"
+        } ],
+        "technology" : ".NET 7 Web API"
+      } ],
+      "documentation" : { }
+    }, {
+      "id" : "5",
+      "tags" : "Element,Software System",
+      "name" : "Frontend!",
+      "relationships" : [ {
+        "id" : "7",
+        "tags" : "Relationship",
+        "sourceId" : "5",
+        "destinationId" : "3",
+        "description" : "Makes requests to"
+      }, {
+        "id" : "8",
+        "sourceId" : "5",
+        "destinationId" : "2",
+        "description" : "Makes requests to",
+        "linkedRelationshipId" : "7"
+      } ],
+      "location" : "Internal",
+      "documentation" : { }
+    } ]
+  },
+  "documentation" : { },
+  "views" : {
+    "systemLandscapeViews" : [ {
+      "key" : "SystemLandscape",
+      "order" : 1,
+      "automaticLayout" : {
+        "implementation" : "Graphviz",
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "nodeSeparation" : 300,
+        "edgeSeparation" : 0,
+        "vertices" : false
+      },
+      "enterpriseBoundaryVisible" : true,
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "relationships" : [ {
+        "id" : "6"
+      }, {
+        "id" : "8"
+      } ]
+    } ],
+    "containerViews" : [ {
+      "softwareSystemId" : "2",
+      "key" : "Containers",
+      "order" : 2,
+      "automaticLayout" : {
+        "implementation" : "Graphviz",
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "nodeSeparation" : 300,
+        "edgeSeparation" : 0,
+        "vertices" : false
+      },
+      "externalSoftwareSystemBoundariesVisible" : true,
+      "elements" : [ {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "relationships" : [ {
+        "id" : "7"
+      }, {
+        "id" : "9"
+      } ]
+    } ],
+    "configuration" : {
+      "branding" : { },
+      "styles" : {
+        "elements" : [ {
+          "tag" : "External",
+          "background" : "#999999",
+          "color" : "#ffffff"
+        }, {
+          "tag" : "Platform",
+          "background" : "#33ccff",
+          "color" : "#ffffff"
+        }, {
+          "tag" : "Database",
+          "shape" : "Cylinder"
+        } ]
+      },
+      "themes" : [ "https://static.structurizr.com/themes/default/theme.json" ],
+      "terminology" : { },
+      "lastSavedView" : "Containers"
+    }
+  }
+}
