@@ -4,7 +4,6 @@ using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
 
 using AggregateGroot.Structurizr.Tools.Cli.Commands;
-using AggregateGroot.Structurizr.Tools.Cli.Commands.Templating;
 
 namespace AggregateGroot.Structurizr.Tools.Cli
 {
@@ -23,10 +22,7 @@ namespace AggregateGroot.Structurizr.Tools.Cli
         private static void Main(string[] args)
         {         
             ServiceProvider services = new ServiceCollection()
-                .AddSingleton(PhysicalConsole.Singleton)
-                .AddSingleton<IPrompt, ConsolePrompt>()
-                .AddSingleton<ICliProvider, WrappedCliProvider>()
-                .AddSingleton<ITemplateEngine, DotNetTemplateEngine>()
+                .AddCommandDependencies()
                 .BuildServiceProvider();
 
             CommandLineApplication<RootCommand> application = new ();
