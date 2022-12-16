@@ -9,6 +9,7 @@
         <PackageId>$(RootNamespace)</PackageId>
         <PackageVersion>$(Version)</PackageVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <RepositoryUrl>https://github.com/aggregate-groot/structurizr-tools</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
