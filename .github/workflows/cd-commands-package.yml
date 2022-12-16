@@ -1,0 +1,30 @@
+name: CD - Commands Package
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'src/Cli.Commands/Cli.Commands.csproj'
+      - '.github/workflows/cd-commands-package.yml'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout Source
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0.x
+        include-prerelease: true
+
+    - name: Pack Templates
+      run: dotnet pack ./src/Cli.Commands/Cli.Commands.csproj -c Release
+
+    - name: Push Templates Package
+      run: dotnet nuget push src/Cli.Commands/bin/**/*.nupkg --api-key ${{ secrets.NUGET_PUBLISH_KEY }} --source https://api.nuget.org/v3/index.json
