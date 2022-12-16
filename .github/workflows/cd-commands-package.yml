@@ -11,6 +11,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      PROJECT_FILE: ./src/Cli.Commands/Cli.Commands.csproj
 
     steps:
 
@@ -23,8 +25,14 @@ jobs:
         dotnet-version: 7.0.x
         include-prerelease: true
 
-    - name: Pack Templates
-      run: dotnet pack ./src/Cli.Commands/Cli.Commands.csproj -c Release
+    - name: Restore dependencies
+      run: dotnet restore $PROJECT_FILE
 
-    - name: Push Templates Package
+    - name: Build
+      run: dotnet build $PROJECT_FILE --no-restore -c Release
+
+    - name: Pack Commands
+      run: dotnet pack $PROJECT_FILE -c Release
+
+    - name: Push Commands Package
       run: dotnet nuget push src/Cli.Commands/bin/**/*.nupkg --api-key ${{ secrets.NUGET_PUBLISH_KEY }} --source https://api.nuget.org/v3/index.json
