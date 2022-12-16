@@ -1,0 +1,30 @@
+name: CD - Templates
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'src/TemplatePack/**'
+      - '.github/workflows/cd-templates.yml'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout Source
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0.x
+        include-prerelease: true
+
+    - name: Pack Templates
+      run: dotnet pack ./src/TemplatePack/TemplatePack.csproj -c Release
+
+    - name: Push Templates Package
+      run: dotnet nuget push AggregateGroot.Structurizr.Templates.*.nupkg --api-key ${{ secrets.NUGET_PUBLISH_KEY }} --source https://api.nuget.org/v3/index.json

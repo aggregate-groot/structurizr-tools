@@ -5,7 +5,8 @@
         <Nullable>enable</Nullable>
         <AssemblyName>$(RootNamespace)</AssemblyName>
         <RootNamespace>AggregateGroot.Structurizr.Tools.Cli.Commands</RootNamespace>
-        <Version>0.1.0</Version>
+        <Version>1.0.0</Version>
+        <PackageId>$(RootNamespace)</PackageId>
         <PackageVersion>$(Version)</PackageVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>

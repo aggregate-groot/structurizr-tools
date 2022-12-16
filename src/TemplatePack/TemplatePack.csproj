@@ -3,9 +3,9 @@
   <PropertyGroup>
     <PackageType>Template</PackageType>
     <PackageVersion>1.0.0</PackageVersion>
-    <PackageId>AggragateGroot.Structurizr.Templates</PackageId>
+    <PackageId>AggregateGroot.Structurizr.Templates</PackageId>
     <Title>Structurizr Templates</Title>
-    <Authors>Aggragate Groot</Authors>
+    <Authors>Aggregate Groot</Authors>
     <Description>Templates for creating Structurizr workspaces and files.</Description>
     <RepositoryUrl>https://github.com/aggregate-groot/structurizr-tools</RepositoryUrl>
     <PackageTags>dotnet-new;templates</PackageTags>
