@@ -37,8 +37,7 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams
                 {
                     diagrams.Add(new Diagram()
                     {
-                        Content = Convert.FromBase64String(trimmedContent),
-                        Name = RenameView(fileName)
+                        Content = Convert.FromBase64String(trimmedContent), Name = RenameView(fileName)
                     });
                 }
                 catch (Exception e)
@@ -92,18 +91,23 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams
         {
             StringBuilder nameBuilder = new();
             nameBuilder.Append(char.ToLowerInvariant(viewName[0]));
-            
-            for (int i = 1; i < viewName.Length; i++)
+            const char separator = '-';
+
+            for (int index = 1; index < viewName.Length; index++)
             {
-                char currentCharacter = viewName[i];
+                char currentCharacter = viewName[index];
                 if (char.IsUpper(currentCharacter))
                 {
-                    nameBuilder.Append('-');
+                    if (viewName[index - 1] != separator)
+                    {
+                        nameBuilder.Append(separator);
+                    }
+
                     nameBuilder.Append(char.ToLowerInvariant(currentCharacter));
                 }
                 else
                 {
-                    nameBuilder.Append(viewName[i]);
+                    nameBuilder.Append(viewName[index]);
                 }
             }
 
