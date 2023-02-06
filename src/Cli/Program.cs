@@ -22,7 +22,7 @@ namespace AggregateGroot.Structurizr.Tools.Cli
         private static void Main(string[] args)
         {         
             ServiceProvider services = new ServiceCollection()
-                .AddCommandDependencies()
+                .AddStructurizrTools()
                 .BuildServiceProvider();
 
             CommandLineApplication<RootCommand> application = new ();
