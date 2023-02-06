@@ -1,8 +1,6 @@
-﻿using McMaster.Extensions.CommandLineUtils;
-using Microsoft.Extensions.DependencyInjection;
+﻿using System;
 
-using AggregateGroot.Structurizr.Tools.Cli.Commands.Templating;
-using AggregateGroot.Structurizr.Tools.Cli.Commands.Workspace.ExportDiagrams;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AggregateGroot.Structurizr.Tools.Cli.Commands
 {
@@ -22,17 +20,10 @@ namespace AggregateGroot.Structurizr.Tools.Cli.Commands
         /// <returns>
         /// The provided service collection with the required dependencies added.
         /// </returns>
+        [Obsolete("Use AggregateGroot.Structurizr.Tools.Cli.Commands.ServiceCollectionExtensions.AddStructurizrTools() instead.")]
         public static IServiceCollection AddCommandDependencies(this IServiceCollection services)
         {
-            services
-                .AddSingleton(PhysicalConsole.Singleton)
-                .AddSingleton<IPrompt, ConsolePrompt>()
-                .AddSingleton<ICliProvider, WrappedCliProvider>()
-                .AddSingleton<ITemplateEngine, DotNetTemplateEngine>()
-                .AddSingleton<IDiagramExporter, PuppeteerDiagramExporter>()
-                .AddSingleton<IDiagramTarget, FileSystemDiagramTarget>();
-            
-            return services;
+            return services.AddStructurizrTools();
         }
     }
 }

@@ -13,5 +13,8 @@
 				"ciarant.vscode-structurizr"
 			]
 		}
+	},
+	"remoteEnv": {
+		"PATH": "${containerEnv:PATH}:/home/vscode/.dotnet/tools"
 	}
 }
